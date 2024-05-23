@@ -1,0 +1,19 @@
+[
+    {
+      "model": "Court",
+      "data": {
+        "id": 1,
+        "surface": "Grass",
+        "condition": "Good"
+      }
+    },
+    {
+      "model": "Court",
+      "data": {
+        "id": 2,
+        "surface": "Clay",
+        "condition": "Excellent"
+      }
+    }
+  ]
+  

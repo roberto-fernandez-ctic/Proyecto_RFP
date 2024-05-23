@@ -1,0 +1,20 @@
+[
+    {
+      "model": "Booking",
+      "data": {
+        "id": 1,
+        "id_court": 1,
+        "id_user": 1,
+        "id_schedule": 1
+      }
+    },
+    {
+      "model": "Booking",
+      "data": {
+        "id": 2,
+        "id_court": 2,
+        "id_user": 2,
+        "id_schedule": 2
+      }
+    }
+  ]

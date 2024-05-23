@@ -1,0 +1,44 @@
+version: '3.0'
+
+services:
+  mysql:
+    image: mysql:8.0.32
+    command: --max_allowed_packet=32505856 --innodb_use_native_aio=0
+    ports:
+      - '5140:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - './docker/mysql/CREATE_EMPTY_DATABASE.sql:/docker-entrypoint-initdb.d/CREATE_EMPTY_DATABASE.sql'
+      - '../volumes/mysql/:/var/lib/mysql/'
+    container_name: gestor_mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  server:
+    build: ./server
+    ports:
+      - '5141:3000'
+      - '5142:3001'
+    links:
+      - mysql
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+    volumes:
+      - '../volumes/server/uploads/:/usr/src/Proyecto_RFP/uploads'
+    container_name: gestor_server
+  web:
+    build: ./web/app
+    ports:
+      - '5143:80'
+    links:
+      - mysql
+      - server
+    depends_on:
+      - server
+    container_name: gestor_web

@@ -7,15 +7,30 @@ const Sequelize = require('sequelize');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.json')[env];
+const config = require(__dirname + '/../config/config')[env];
 const db = {};
+const CONFIG = require("../config/config");
 
-let sequelize;
+/* let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
+ */
+
+const sequelize = new Sequelize(
+  CONFIG.DB_NAME,
+  CONFIG.DB_USERNAME,
+  CONFIG.DB_PASSWORD,
+  {
+    host: CONFIG.DB_HOST,
+    port: CONFIG.DB_PORT,
+    dialect: CONFIG.DB_DIALECT,
+    operatorsAliases: null,
+    logging: console.log,
+  }
+);
 
 fs
   .readdirSync(__dirname)
@@ -37,6 +52,17 @@ Object.keys(db).forEach(modelName => {
     db[modelName].associate(db);
   }
 });
+
+// Relaciones
+db.User.hasMany(db.Booking, { foreignKey: 'id_user', as: 'bookings' });
+
+db.Booking.belongsTo(db.Court, { foreignKey: 'id_court', as: 'court' });
+db.Booking.belongsTo(db.User, { foreignKey: 'id_user', as: 'user' });
+db.Booking.belongsTo(db.Schedule, { foreignKey: 'id_schedule', as: 'schedule' });
+
+db.Court.hasMany(db.Booking, { foreignKey: 'id_court', as: 'bookings' });
+
+db.Schedule.hasMany(db.Booking, { foreignKey: 'id_schedule', as: 'bookings' });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
