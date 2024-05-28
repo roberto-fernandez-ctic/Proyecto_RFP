@@ -1,13 +1,13 @@
 const express = require("express");
 const models = require('./models');
-const app = express()
+const app = express();
+const routes = require('./routes/index');
+const cors = require('cors');
 
-/* //API
-app.get("/home", (req, res) =>  {
-    res.json({ "users": ["Rober", "Jony", "Alex", " El pepe"] })
-})
+app.use(express.json());
+app.use(cors());
 
-app.listen(5000, () => { console.log("Server listenning on port 5000") }) */
+app.use("/", routes);
 
 // Load & Log configuration
 const CONFIG = require('./config/config');
@@ -60,5 +60,9 @@ if (CONFIG.NODE_ENV === 'development') {
         console.log('\nSomething went wrong with the Database Update!');
       });
   }
+
+  app.listen(CONFIG.PORT, () => {
+    console.log(`Server started on port ${CONFIG.PORT}`);
+  });
 
   module.exports = app;

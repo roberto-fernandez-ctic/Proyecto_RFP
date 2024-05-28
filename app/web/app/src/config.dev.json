@@ -1,0 +1,6 @@
+{
+    "ENVIRONMENT": "development",
+    "NODE_ENV": "development",
+    "SERVER_BASE_URL": "http://localhost:3001"
+  }
+  

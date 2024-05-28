@@ -1,30 +1,28 @@
-import React, { useEffect, useState } from 'react'
+import React, {Suspense, useEffect, useState } from 'react'
+import axios from 'axios';
+import devConfig from "./config.dev.json";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Fetch from './Fetch';
 
 function App() {
 
-  const [backendData, setBackendData] = useState([{}])
+/*   useEffect(() => {
+    console.log("DEVELOPMENT CONFIGURATION:");
+    console.log(devConfig);
+    window.CONFIG = devConfig;
+  }, []); */
 
-  useEffect(() => {
-    fetch("/home").then(
-      response => response.json()
-    ).then(
-      data => {
-        setBackendData(data)
-      }
-    )
-  }, [])
-  
   return (
-/*     <div>
-      {(typeof backendData.users === "undefined") ? (
-        <p>Loading...</p>
-      ): backendData.users.map((user,i) => (
-          <p key={i}>{user}</p>
-        )
-      )}
-    </div> */
-    <h1>Hello world!</h1>
+    <Fetch/>
   )
 }
 
 export default App
+
+function PageComposer(props) {
+  return (
+    <div>
+      {props.page()}
+    </div>
+  );
+}

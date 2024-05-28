@@ -53,6 +53,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+
 // Relaciones
 db.User.hasMany(db.Booking, { foreignKey: 'id_user', as: 'bookings' });
 
@@ -63,8 +66,5 @@ db.Booking.belongsTo(db.Schedule, { foreignKey: 'id_schedule', as: 'schedule' })
 db.Court.hasMany(db.Booking, { foreignKey: 'id_court', as: 'bookings' });
 
 db.Schedule.hasMany(db.Booking, { foreignKey: 'id_schedule', as: 'bookings' });
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 
 module.exports = db;
