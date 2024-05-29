@@ -61,10 +61,8 @@ db.User.hasMany(db.Booking, { foreignKey: 'id_user', as: 'bookings' });
 
 db.Booking.belongsTo(db.Court, { foreignKey: 'id_court', as: 'court' });
 db.Booking.belongsTo(db.User, { foreignKey: 'id_user', as: 'user' });
-db.Booking.belongsTo(db.Schedule, { foreignKey: 'id_schedule', as: 'schedule' });
 
 db.Court.hasMany(db.Booking, { foreignKey: 'id_court', as: 'bookings' });
 
-db.Schedule.hasMany(db.Booking, { foreignKey: 'id_schedule', as: 'bookings' });
 
 module.exports = db;

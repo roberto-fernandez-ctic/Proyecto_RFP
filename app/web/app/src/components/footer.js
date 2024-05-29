@@ -4,7 +4,7 @@ export default function Footer(props) {
   return (
     <footer className="footer">
       <div className="row">
-        <div className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center  border-top border-success">
           <ul className="nav nav-footer text-center">
             <li className="nav-item nav-link">© 2024 </li>
 
@@ -15,7 +15,7 @@ export default function Footer(props) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                CTIC
+                Roberto Fdez
               </a>
             </li>
             <li className="nav-item">
@@ -24,7 +24,7 @@ export default function Footer(props) {
                 className="nav-link"
                 target="_blank"
                 rel="noopener noreferrer"
-              > Sobre nosotros
+              > I.E.S Bernaldo de Quirós
               </a>
             </li>
             <li className="nav-item">
@@ -34,7 +34,7 @@ export default function Footer(props) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Aviso legal
+                Aviso Legal
               </a>
             </li>
           </ul>

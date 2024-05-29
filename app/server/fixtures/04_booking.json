@@ -1,0 +1,20 @@
+[
+  {
+    "model": "Booking",
+    "data": {
+      "id": 1,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-05-27T12:00:00Z"
+    }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 2,
+      "id_court": 2,
+      "id_user": 2,
+      "date": "2024-05-27T13:00:00Z"
+    }
+  }
+]

@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
-    "Schedule",
+    "Booking",
     {
       id: {
         type: DataTypes.INTEGER(11),
@@ -11,19 +11,25 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         field: "id",
       },
-      start: {
-        type: DataTypes.TIME,
+      id_court: {
+        type: DataTypes.INTEGER(11),
         allowNull: false,
-        field: "start",
+        field: "id_court",
       },
-      finish: {
-        type: DataTypes.TIME,
+      id_user: {
+        type: DataTypes.INTEGER(11),
         allowNull: false,
-        field: "finish",
+        field: "id_user",
       },
+      date: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        unique: true,  // Añade la restricción de unicidad
+        field: "date",
+      }
     },
     {
-      tableName: "Schedule",
+      tableName: "Booking",
       freezeTableName: true,
       underscored: true,
       timestamps: true,
