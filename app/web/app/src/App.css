@@ -1,10 +1,122 @@
- :root {
-  --navbar-bg-color: #2c2c2c;
-  --navbar-text-color: white;
-  --navbar-text-hover: grey;
-  --navbar-book: lightgreen;
- }
+:root {
+  --black: #2c2c2c;
+  --white: white;
+  --grey: grey;
+  --green: #dfff4f;
+}
 
- .navbar {
-  background-color: var(--navbar-bg-color);
- }
+@media (max-width: 576px) {
+  .responsive-text {
+    font-size: 0.9rem; /* Smaller text for extra small screens */
+  }
+
+  footer {
+    font-size: 0.8rem;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .responsive-text {
+    font-size: 1rem; /* Medium text for small screens */
+  }
+}
+
+.navbar {
+  background-color: var(--black);
+}
+
+/* Fondo Home */
+header::before {
+  content: "";
+  z-index: -1;
+  left: 0;
+  right: 0;
+  position: absolute;
+  display: block;
+  background-image: url("./images/fondo_padel.png");
+  background-size: cover;
+  background-position: center;
+  height:75vh; /* Altura completa de la ventana */
+  margin: 0;
+  opacity: 0.7;
+  filter: blur(2.5px);
+}
+
+/* Contenido general */
+.content {
+  overflow: auto;
+  position: relative;
+  color: var(--white);
+  padding: 6%;
+  padding-left: 10%;
+  left: 0;
+  right: 0;
+  text-shadow: 2px 3px 5px var(--black);
+}
+
+.custom-button {
+  border-radius: 50px; /* Redondeado */
+  background-color: var(--green); /* Fondo verde al hacer hover */
+  border: 2px solid var(--black ); /* Borde verde */
+  color: var(); /* Texto verde */
+  padding: 0.5rem 1rem; /* Espaciado interno */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+}
+
+.custom-button:hover {
+  background-color: transparent; /* Fondo blanco */
+  border: 2px solid var(--green); /* Borde verde */
+  color: var(--white); /* Texto blanco al hacer hover */
+}
+
+.text-green {
+  color: var(--green);
+}
+
+/* Margen footer */
+.footer {
+  margin-top: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.bg-translucent {
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro translúcido */
+  padding: 2rem; /* Espaciado interno para que el texto no quede pegado al borde */
+  border-radius: 5rem; /* Esquinas redondeadas opcional */
+  margin: 4rem;
+}
+
+/* Clase para borde verde personalizado */
+.border-green {
+  border-color: var(--green) !important;
+}
+
+.bg-green {
+  background-color: var(--green) !important;
+}
+
+/* Clase para botón con borde y texto verde personalizado */
+.btn-outline-green {
+  color: var(--green);
+  border-color: var(--green);
+}
+
+.btn-outline-green:hover,
+.btn-outline-green:focus,
+.btn-outline-green:active,
+.btn-outline-green.active,
+.btn-outline-green.dropdown-toggle {
+  color: var(--black);
+  background-color: var(--green);
+  border-color: var(--green);
+}
+
+.btn-outline-green:disabled,
+.btn-outline-green.disabled {
+  color: var(--green);
+  background-color: transparent;
+}
