@@ -9,4 +9,7 @@ router.get('/', (req, res, next) => {
   
 router.get("/users", UserController.getAllUsers);
 
+router.get('/bookings', bookingController.getAllBookings);
+router.get('/bookingsByCourtAndDate', bookingController.getBookingsByCourtAndDate);
+
 module.exports = router;
