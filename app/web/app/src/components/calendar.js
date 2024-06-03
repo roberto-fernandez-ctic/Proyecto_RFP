@@ -1,11 +1,17 @@
-import { React, useState } from "react";
-import Header from "../components/header";
-import Footer from "../components/footer";
+import { React, useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
+import devConfig from "../config.dev.json";
 import "../App.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 export function Calendar() {
+
+  useEffect(() => {
+    console.log("DEVELOPMENT CONFIGURATION:");
+    console.log(devConfig);
+    window.CONFIG = devConfig;
+  }, []);
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [availability, setAvailability] = useState([]);
   const today = new Date();
@@ -14,16 +20,61 @@ export function Calendar() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    // Simulación de disponibilidad, aquí deberías hacer una llamada a tu API para obtener los datos reales
-    const fakeAvailability = [
-      { time: '08:00', available: true },
-      { time: '09:00', available: false },
-      { time: '10:00', available: true },
-      // ... más datos de disponibilidad
-    ];
-    setAvailability(fakeAvailability);
+    setAvailability([]);
   };
 
+  useEffect(() => {
+    if (selectedDate) {
+      fetch(`${window.CONFIG.SERVER_BASE_URL}/bookings`)
+        .then((response) => response.json())
+        .then((data) => {
+          generateAvailability(data);
+/*           console.log(data) */
+        })
+        .catch((error) => console.log(error));
+    }
+  }, [selectedDate]);
+
+   const generateAvailability = (reservations) => {
+    console.log(reservations);
+    const startHour = 9; // 9 AM
+    const endHour = 21; // 9 PM
+    const interval = 1.5; // 90 minutes
+
+    const slots = [];
+    const date = new Date(selectedDate);
+    date.setHours(startHour, 0, 0);
+    const hours = [];
+
+    for (let hour = startHour; hour < endHour; hour += interval) {
+      hours.push(hour);
+    }
+
+    while (date.getHours() <= endHour) {
+      const endDate = new Date(date);
+      endDate.setMinutes(date.getMinutes() + interval);
+
+      const isBooked = hours.forEach((hour, index) =>{
+        
+      });
+/*       const isBooked = reservations.some(reservation => {
+        const reservationDate = new Date(reservation.date);
+        return reservationDate >= date && reservationDate < endDate;
+      }); */
+
+      if (!isBooked) {
+        slots.push({
+          time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          available: true,
+        });
+      }
+
+      date.setMinutes(date.getMinutes() + interval);
+    } 
+
+    setAvailability(slots);
+  };
+  
   return (
     <div className="container">
       <div className="row">
@@ -38,10 +89,10 @@ export function Calendar() {
         </div>
       </div>
       {selectedDate && (
-        <div className="availability mt-4">
+        <div className="availability mt-3">
           <h3 className="text-center">Disponibilidad para {selectedDate.toLocaleDateString()}</h3>
           <ul className="list-group">
-            {availability.filter(slot => slot.available).map((slot, index) => (
+            {availability.map((slot, index) => (
               <li key={index} className="list-group-item list-group-item-success">
                 {slot.time} - Disponible
               </li>

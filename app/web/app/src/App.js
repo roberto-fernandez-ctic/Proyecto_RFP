@@ -11,7 +11,7 @@ import Rates from "./pages/rates";
 import TitleUpdater from "./components/titleUpdater";
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import { Calendar } from "./components/calendar";
+import Bookings from "./pages/bookings";
 
 function App() {
   // loading component for suspense fallback
@@ -72,7 +72,7 @@ function App() {
             element={
               <>
                 <TitleUpdater title="Reservas" />
-                <Calendar />
+                <Bookings />
               </>
             }
           />

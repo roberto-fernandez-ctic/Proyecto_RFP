@@ -13,6 +13,4 @@ getAllUsers: (req, res) => {
   },
 };
 
-getUser:
-
 module.exports = UserController;

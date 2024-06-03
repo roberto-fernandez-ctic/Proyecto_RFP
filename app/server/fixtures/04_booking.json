@@ -16,5 +16,69 @@
       "id_user": 1,
       "date": "2024-06-07T13:30:00Z"
     }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 3,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-07T10:30:00Z"
+    }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 4,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-07T09:00:00Z"
+    }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 5,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-07T21:00:00Z"
+    }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 6,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-07T18:00:00Z"
+    }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 7,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-06T10:30:00Z"
+    }
+  },
+  {
+    "model": "Booking",
+    "data": {
+      "id": 8,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-03T10:30:00Z"
+    }
+  }
+  ,
+  {
+    "model": "Booking",
+    "data": {
+      "id": 9,
+      "id_court": 1,
+      "id_user": 1,
+      "date": "2024-06-04T10:30:00Z"
+    }
   }
 ]
