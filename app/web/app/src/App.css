@@ -90,6 +90,10 @@ header::before {
   margin-bottom: 0.5rem;
 }
 
+.form {
+  text-shadow: none;
+}
+
 .text-justify {
   text-align: justify;
 }
