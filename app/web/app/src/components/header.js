@@ -53,7 +53,7 @@ export default function Header(props){
               </a>
             </li>
             <li className="nav-item flex-grow-1 text-center">
-              <a className="nav-link align-self-center" href="#">
+              <a className="nav-link align-self-center" href="/login">
                 <img src="/user.svg" alt="user_icon" style={{width: "2.5rem"}}/>
               </a>
             </li>

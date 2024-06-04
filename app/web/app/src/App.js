@@ -12,6 +12,7 @@ import TitleUpdater from "./components/titleUpdater";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 import Bookings from "./pages/bookings";
+import Login from "./pages/userLog"
 
 function App() {
   // loading component for suspense fallback
@@ -85,6 +86,18 @@ function App() {
               <>
                 <TitleUpdater title="Contacto" />
                 <Contact />
+              </>
+            }
+          />
+
+<Route
+            exact
+            path="/login"
+            title="Login"
+            element={
+              <>
+                <TitleUpdater title="Login" />
+                <Login/>
               </>
             }
           />
