@@ -18,6 +18,8 @@ export function Calendar() {
   const maxDate = new Date(today);
   maxDate.setDate(maxDate.getDate() + 7);
 
+  const user = localStorage.getItem("username");
+
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setAvailability([]);
@@ -35,7 +37,6 @@ export function Calendar() {
   }, [selectedDate]);
 
    const generateAvailability = (reservations) => {
-    console.log(reservations)
     const startHour = 9; // 9 AM
     const endHour = 21; // 9 PM
     const interval = 60; // 60 minutes
@@ -48,7 +49,7 @@ export function Calendar() {
       const isBooked = reservations.some((element) => {
       let reserve = new Date(element.date);
       reserve.setHours(reserve.getHours() - 2);
-      return (reserve.getHours() === date.getHours() && date.getDay() === reserve.getDay()) 
+      return (reserve.getHours() === date.getHours() && date.getDate()) === reserve.getDate() 
       });
       console.log()
 

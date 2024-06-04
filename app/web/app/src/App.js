@@ -1,11 +1,6 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import axios from "axios";
-import devConfig from "./config.dev.json";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Fetch from "./Fetch";
-import Header from "./components/header";
-import Footer from "./components/footer";
 import Main from "./pages/main";
 import Rates from "./pages/rates";
 import TitleUpdater from "./components/titleUpdater";
