@@ -6,6 +6,7 @@
         "name": "John Doe",
         "email": "john@example.com",
         "password": "password123",
+        "username": "johndoe",
         "rol": "admin"
       }
     },
@@ -16,6 +17,7 @@
         "name": "Jane Smith",
         "email": "jane@example.com",
         "password": "password456",
+        "username": "janesmith",
         "rol": "user"
       }
     }

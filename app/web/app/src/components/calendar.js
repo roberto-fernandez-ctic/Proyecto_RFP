@@ -29,38 +29,28 @@ export function Calendar() {
         .then((response) => response.json())
         .then((data) => {
           generateAvailability(data);
-/*           console.log(data) */
         })
         .catch((error) => console.log(error));
     }
   }, [selectedDate]);
 
    const generateAvailability = (reservations) => {
-    console.log(reservations);
+    console.log(reservations)
     const startHour = 9; // 9 AM
     const endHour = 21; // 9 PM
-    const interval = 1.5; // 90 minutes
+    const interval = 60; // 60 minutes
 
     const slots = [];
     const date = new Date(selectedDate);
     date.setHours(startHour, 0, 0);
-    const hours = [];
-
-    for (let hour = startHour; hour < endHour; hour += interval) {
-      hours.push(hour);
-    }
 
     while (date.getHours() <= endHour) {
-      const endDate = new Date(date);
-      endDate.setMinutes(date.getMinutes() + interval);
-
-      const isBooked = hours.forEach((hour, index) =>{
-        
+      const isBooked = reservations.some((element) => {
+      let reserve = new Date(element.date);
+      reserve.setHours(reserve.getHours() - 2);
+      return (reserve.getHours() === date.getHours() && date.getDay() === reserve.getDay()) 
       });
-/*       const isBooked = reservations.some(reservation => {
-        const reservationDate = new Date(reservation.date);
-        return reservationDate >= date && reservationDate < endDate;
-      }); */
+      console.log()
 
       if (!isBooked) {
         slots.push({
@@ -94,7 +84,7 @@ export function Calendar() {
           <ul className="list-group">
             {availability.map((slot, index) => (
               <li key={index} className="list-group-item list-group-item-success">
-                {slot.time} - Disponible
+                <button style={{}}>{slot.time} - Disponible</button>
               </li>
             ))}
           </ul>

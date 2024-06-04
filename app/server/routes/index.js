@@ -10,7 +10,8 @@ router.get('/', (req, res, next) => {
   
 router.get("/users", UserController.getAllUsers);
 
+router.get("users/:username", UserController.getUserByUsername);
+
 router.get('/bookings', BookingController.getAllBookings);
-/* router.get('/bookingsByCourtAndDate', BookingController.getBookingsByCourtAndDate); */
 
 module.exports = router;
