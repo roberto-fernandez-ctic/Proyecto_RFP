@@ -4,10 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
 export default function Header(props){
+
+    const user = JSON.parse(localStorage.getItem("user"));
+
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark" style={{display: "block", marginTop: "auto"}}>
+        <nav className="navbar navbar-expand-lg navbar-dark border-bottom border-green" style={{display: "block", marginTop: "auto"}}>
         <div className="container-fluid">
-            <img src="/images/logo_fondo_crop.png" alt="logo manager" style={{width: "4rem", margin: "0.5rem", borderRadius: "5rem"}}/>
+            <a href="/"><img src="/images/logo_fondo_crop.png" alt="logo manager" style={{width: "4rem", margin: "0.5rem", borderRadius: "5rem"}}/></a>
           <button
             className="navbar-toggler"
             type="button"
@@ -53,9 +56,9 @@ export default function Header(props){
               </a>
             </li>
             <li className="nav-item flex-grow-1 text-center">
-              <a className="nav-link align-self-center" href="/login">
+              {user ? <a href="/user" className="nav-link align-self-center text-green">{user.username}</a> : <a className="nav-link align-self-center" href="/login">
                 <img src="/user.svg" alt="user_icon" style={{width: "2.5rem"}}/>
-              </a>
+              </a>}
             </li>
           </ul>
           </div>

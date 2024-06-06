@@ -5,6 +5,10 @@
   --green: #dfff4f;
 }
 
+body {
+  background-color: var(--black);
+}
+
 @media (max-width: 576px) {
   .responsive-text {
     font-size: 0.9rem; /* Smaller text for extra small screens */
@@ -72,12 +76,15 @@ header::before {
   color: var(); /* Texto verde */
   padding: 0.5rem 1rem; /* Espaciado interno */
   transition: background-color 0.3s, color 0.3s; /* Transiciones suaves */
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 
 .custom-button:hover {
   background-color: transparent; /* Fondo blanco */
   border: 2px solid var(--green); /* Borde verde */
   color: var(--white); /* Texto blanco al hacer hover */
+
 }
 
 .text-green {
@@ -98,8 +105,12 @@ header::before {
   text-align: justify;
 }
 
+.span {
+  margin: 3rem;
+}
+
 .bg-translucent {
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo negro translúcido */
+  background-color: rgba(255, 255, 255, 0.4); /* Fondo negro translúcido */
   padding: 2rem; /* Espaciado interno para que el texto no quede pegado al borde */
   border-radius: 5rem; /* Esquinas redondeadas opcional */
   margin: 4rem;

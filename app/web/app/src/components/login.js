@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from "react-router-dom";
 import devConfig from "../config.dev.json";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -12,6 +13,13 @@ const LoginForm = () => {
 
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  if (localStorage.getItem("user")) {
+    const [user, setUser] = localStorage.getItem("user");
+  } /* else {
+    const [user, setUser] = "";
+  } */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,8 +44,10 @@ const LoginForm = () => {
       if (response.ok) {
         // Maneja el éxito del inicio de sesión, por ejemplo, redirigiendo al usuario
         console.log('Login successful', data);
-        alert("¡Usuario " + data.user.username + " logueado con éxito!");
+        alert(data.user.username + " ha iniciado sesión con éxito!");
         setForm({ username: '', password: '' });
+        localStorage.setItem("user", JSON.stringify(data.user));
+        navigate('/user');
       } else {
         // Maneja errores de inicio de sesión
         setError(data.message);

@@ -12,9 +12,9 @@ getAllUsers: (req, res) => {
       });
   },
 
-  getUserByUsername: (req,res) => {
-    const username = req.params.username;
-    User.findOne({ where: { username } })
+  getUserById: (req,res) => {
+    const id = req.params.id;
+    User.findOne({ where: id })
       .then((user) => {
         if (user) {
           res.status(200).json(user);
