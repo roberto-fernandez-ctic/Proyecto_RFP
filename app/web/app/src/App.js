@@ -9,6 +9,7 @@ import Contact from "./pages/contact";
 import Bookings from "./pages/bookings";
 import Login from "./pages/userLog";
 import User from "./pages/user";
+import Register from "./pages/register";
 
 function App() {
   // loading component for suspense fallback
@@ -106,6 +107,19 @@ function App() {
               <>
                 <TitleUpdater title="User" />
                 <User/>
+              </>
+            }
+          />
+
+
+<Route
+            exact
+            path="/register"
+            title="Registro"
+            element={
+              <>
+                <TitleUpdater title="Registro" />
+                <Register/>
               </>
             }
           />

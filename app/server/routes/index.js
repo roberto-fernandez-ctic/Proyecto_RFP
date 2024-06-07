@@ -13,6 +13,12 @@ router.get("/users", UserController.getAllUsers);
 
 router.get("users/:id", UserController.getUserById);
 
+router.post('/check-username', UserController.checkUsername);
+
+router.post('/check-email', UserController.checkEmail);
+
+router.post('/register-user', UserController.registerUser);
+
 router.post("/login", AuthController.login);
 
 router.get('/bookings', BookingController.getAllBookings);

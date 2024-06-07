@@ -3,10 +3,14 @@ import DatePicker from "react-datepicker";
 import devConfig from "../config.dev.json";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
 import "../App.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 export function Calendar() {
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log("DEVELOPMENT CONFIGURATION:");
     console.log(devConfig);
@@ -85,7 +89,7 @@ export function Calendar() {
   const handleConfirm = () => {
     if (user && selectedSlot) {
     // Obtener la fecha seleccionada como cadena en formato 'YYYY-MM-DD'
-    const datePart = selectedDate.toLocaleDateString('en-CA'); // 'en-CA' da el formato 'YYYY-MM-DD'
+   /*  const datePart = selectedDate.toLocaleDateString('en-CA') */; // 'en-CA' da el formato 'YYYY-MM-DD'
     const [hours, minutes] = selectedSlot.time.split(':').map(Number);
     const adjustedDate = new Date(selectedDate);
     adjustedDate.setHours(hours + 2, minutes); // Ajustar la hora a GMT+2
@@ -114,6 +118,9 @@ export function Calendar() {
         .catch((error) => {
           console.error("Error creating booking:", error);
         });
+    } else {
+      alert("¡Debes iniciar sesión para realizar una reserva!");
+      navigate("/login")
     }
     setShowModal(false);
   };

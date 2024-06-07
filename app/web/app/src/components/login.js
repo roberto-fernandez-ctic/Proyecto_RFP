@@ -96,6 +96,9 @@ const LoginForm = () => {
                 <div className='text-center'>
                     <button type="submit" className="btn bg-green border border-dark btn-block mt-3">Login</button>
                 </div>
+                <div>
+                  <a href="/register" className=''>¿No tienes cuenta? Regístrate aquí</a>
+                </div>
               </form>
             </div>
           </div>

@@ -1,10 +1,13 @@
 import { React, useState, useEffect } from "react";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import { useNavigate } from "react-router-dom";
 import devConfig from "../config.dev.json";
 import "../App.css";
 
 export default function User(props) {
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log("DEVELOPMENT CONFIGURATION:");
@@ -59,6 +62,10 @@ export default function User(props) {
     return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}:${date.getSeconds().toString().padStart(2, '0')}`;
   };
 
+  const handleButtonClick = () => {
+    navigate('/login');
+  };
+
   return (
     <div className="mainContent">
       {/* HEADER-NAVBAR */}
@@ -72,7 +79,7 @@ export default function User(props) {
             <p>Nombre y apellidos: {user.name}</p>
             {/* Mostrar las reservas */}
             <div>
-            <h3 className="h3 ml-2 mb-3">Reservas asociadas al usuario:</h3>
+              <h3 className="h3 ml-2 mb-3">Reservas asociadas al usuario:</h3>
               {bookings.length > 0 ? (
                 bookings.map((booking) => (
                   <div className="bg-light text-dark form pt-2 pb-2 border border-round" key={booking.id}>
@@ -86,11 +93,21 @@ export default function User(props) {
               )}
             </div>
             <div class="container mt-2 text-center">
-            <button onClick={handleLogout} className="btn custom-button">Salir</button>
-          </div>
+              <button onClick={handleLogout} className="btn custom-button">Salir</button>
+            </div>
           </div>
         ) : (
-          <div>No user is currently logged in.</div>
+          <div>
+            <p>
+              No user is currently logged in.
+            </p>
+            
+          <div class="container mt-5">
+            <button onClick={handleButtonClick} className="btn custom-button">Volver</button>
+          </div>
+
+          </div>
+
         )}
 
       </div>
