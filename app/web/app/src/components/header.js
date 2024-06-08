@@ -41,11 +41,6 @@ export default function Header(props){
               </a>
             </li>
             <li className="nav-item align-self-center text-center flex-grow-1">
-              <a className="nav-link" href="#">
-                Tienda
-              </a>
-            </li>
-            <li className="nav-item align-self-center text-center flex-grow-1">
               <a className="nav-link text-center" href="/contact">
                 Contacto
               </a>

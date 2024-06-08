@@ -66,6 +66,10 @@ export default function User(props) {
     navigate('/login');
   };
 
+  const handleBooking = () => {
+    navigate('/bookings');
+  };
+
   return (
     <div className="mainContent">
       {/* HEADER-NAVBAR */}
@@ -92,17 +96,19 @@ export default function User(props) {
                 <p>No se han encontrado reservas asociadas a este usuario.</p>
               )}
             </div>
-            <div class="container mt-2 text-center">
+            <div className="container mt-2 text-center">
               <button onClick={handleLogout} className="btn custom-button">Salir</button>
+
+              <button onClick={handleBooking} className="btn custom-button">Reservar</button>
             </div>
           </div>
         ) : (
           <div>
-            <p>
-              No user is currently logged in.
+            <p >
+              No hay ningún usuario en sesión actualmente.
             </p>
             
-          <div class="container mt-5">
+          <div className="container mt-2 text-center">
             <button onClick={handleButtonClick} className="btn custom-button">Volver</button>
           </div>
 

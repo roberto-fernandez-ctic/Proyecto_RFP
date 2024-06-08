@@ -50,8 +50,9 @@ export default function Main(props) {
               <h2 className="h2 ml-2 mb-0 text-green">
                 HORARIOS DE TARDES Y FIN DE SEMANA
               </h2>
-              Lunes a viernes de 15:00H - 23:00H Sábados de 10:00H - 20:30H
-              Domingos de 9:30H - 14:00H
+              <li>Lunes a viernes de 15:00H - 23:00H</li>
+              <li>Sábados de 10:00H - 20:30H</li>
+              <li>Domingos de 9:30H - 14:00H</li>
             </p>
           </article>
           <article>
@@ -64,7 +65,7 @@ export default function Main(props) {
             </p>
           </article>
 
-          <div class="container mt-5 text-center">
+          <div className="container mt-5 text-center">
             <button onClick={handleButtonClick} className="btn custom-button">¿A qué esperas? ¡Haz ya tu reserva!</button>
           </div>
         </section>

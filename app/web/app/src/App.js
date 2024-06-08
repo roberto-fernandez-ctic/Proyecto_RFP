@@ -10,6 +10,7 @@ import Bookings from "./pages/bookings";
 import Login from "./pages/userLog";
 import User from "./pages/user";
 import Register from "./pages/register";
+import Legal from "./pages/legalwarning"
 
 function App() {
   // loading component for suspense fallback
@@ -107,6 +108,18 @@ function App() {
               <>
                 <TitleUpdater title="User" />
                 <User/>
+              </>
+            }
+          />
+
+<Route
+            exact
+            path="/legal"
+            title="Legal Warning"
+            element={
+              <>
+                <TitleUpdater title="Legal Warning" />
+                <Legal/>
               </>
             }
           />

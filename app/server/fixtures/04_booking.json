@@ -57,18 +57,18 @@
     "model": "Booking",
     "data": {
       "id": 7,
-      "id_court": 1,
-      "id_user": 1,
-      "date": "2024-06-06T10:00:00.00"
+      "id_court": 2,
+      "id_user": 2,
+      "date": "2024-06-07T14:00:00.00"
     }
   },
   {
     "model": "Booking",
     "data": {
       "id": 8,
-      "id_court": 1,
-      "id_user": 1,
-      "date": "2024-06-03T10:00:00.00"
+      "id_court": 2,
+      "id_user": 2,
+      "date": "2024-06-07T11:00:00.00"
     }
   }
   ,
@@ -76,9 +76,9 @@
     "model": "Booking",
     "data": {
       "id": 9,
-      "id_court": 1,
+      "id_court": 2,
       "id_user": 2,
-      "date": "2024-06-04T11:00:00.00"
+      "date": "2024-06-07T20:00:00.00"
     }
   }
 ]

@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       date: {
         type: DataTypes.DATE,
         allowNull: false,
-        unique: true,  // Añade la restricción de unicidad
         field: "date",
       }
     },

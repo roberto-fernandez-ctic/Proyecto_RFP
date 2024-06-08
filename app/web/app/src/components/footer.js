@@ -23,7 +23,7 @@ export default function Footer(props) {
             </li>
             <li className="col-3 nav-item align-self-center">
               <a
-                href="https://www.fundacionctic.org/es/aviso-legal"
+                href="/legal"
                 className="nav-link link-light"
                 target="_blank"
                 rel="noopener noreferrer"

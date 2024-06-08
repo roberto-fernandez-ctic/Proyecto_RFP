@@ -66,7 +66,7 @@ export default function About(props) {
           </p>
         </section>
         <section>
-          <h2 class="text-green responsive-text">Nuestras instalaciones</h2>
+          <h2 className="text-green responsive-text">Nuestras instalaciones</h2>
           <p>
             En Faro Busto Pádel Club, contamos con instalaciones de primera
             clase para asegurar que nuestros socios y visitantes tengan la mejor

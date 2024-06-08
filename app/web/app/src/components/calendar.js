@@ -8,7 +8,6 @@ import "../App.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 export function Calendar() {
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,10 +17,13 @@ export function Calendar() {
   }, []);
 
   const [selectedDate, setSelectedDate] = useState(null);
-  const [availability, setAvailability] = useState([]);
+  const [availability, setAvailability] = useState({});
   const [user, setUser] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedSlot, setSelectedSlot] = useState(null);
+  const [selectedCourt, setSelectedCourt] = useState(null);
+
+  const courts = [1, 2, 3]; // Lista de pistas
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -36,7 +38,7 @@ export function Calendar() {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    setAvailability([]);
+    setAvailability({});
   };
 
   useEffect(() => {
@@ -53,33 +55,40 @@ export function Calendar() {
   const generateAvailability = (reservations) => {
     const startHour = 9; // 9 AM
     const endHour = 21; // 9 PM
-    const interval = 60; // 60 minutes
+    const interval = 60; // 60 minutos
 
-    const slots = [];
-    const date = new Date(selectedDate);
-    date.setHours(startHour, 0, 0);
+    const slots = courts.reduce((acc, court) => {
+      acc[court] = [];
+      return acc;
+    }, {});
 
-    while (date.getHours() <= endHour) {
-      const isBooked = reservations.some((element) => {
-        let reserve = new Date(element.date);
-        reserve.setHours(reserve.getHours() - 2);
-        return reserve.getHours() === date.getHours() && date.getDate() === reserve.getDate();
-      });
+    courts.forEach(court => {
+      const date = new Date(selectedDate);
+      date.setHours(startHour, 0, 0);
 
-      if (!isBooked) {
-        slots.push({
-          time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-          available: true,
+      while (date.getHours() <= endHour) {
+        const isBooked = reservations.some((element) => {
+          let reserve = new Date(element.date);
+          reserve.setHours(reserve.getHours() - 2);
+          return reserve.getHours() === date.getHours() && date.getDate() === reserve.getDate() && element.id_court === court;
         });
-      }
+  
+        if (!isBooked) {
+          slots[court].push({
+            time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            available: true,
+          });
+        }
 
-      date.setMinutes(date.getMinutes() + interval);
-    }
+        date.setMinutes(date.getMinutes() + interval);
+      }
+    });
 
     setAvailability(slots);
   };
 
-  const handleOpenModal = (slot) => {
+  const handleOpenModal = (court, slot) => {
+    setSelectedCourt(court);
     setSelectedSlot(slot);
     setShowModal(true);
   };
@@ -87,19 +96,15 @@ export function Calendar() {
   const handleClose = () => setShowModal(false);
 
   const handleConfirm = () => {
-    if (user && selectedSlot) {
-    // Obtener la fecha seleccionada como cadena en formato 'YYYY-MM-DD'
-   /*  const datePart = selectedDate.toLocaleDateString('en-CA') */; // 'en-CA' da el formato 'YYYY-MM-DD'
-    const [hours, minutes] = selectedSlot.time.split(':').map(Number);
-    const adjustedDate = new Date(selectedDate);
-    adjustedDate.setHours(hours + 2, minutes); // Ajustar la hora a GMT+2
+    if (user && selectedSlot && selectedCourt) {
+      const [hours, minutes] = selectedSlot.time.split(':').map(Number);
+      const adjustedDate = new Date(selectedDate);
+      adjustedDate.setHours(hours + 2, minutes); // Ajustar la hora a GMT+2
 
-    const bookingDate = adjustedDate.toISOString(); 
-    // Combinar la fecha y la hora del slot seleccionado
-      const courtId = 1; // Esto debe ser dinámico si tienes múltiples canchas
-      console.log(bookingDate + "   " + selectedDate)
+      const bookingDate = adjustedDate.toISOString();
+      
 
-      fetch(`${window.CONFIG.SERVER_BASE_URL}/booking/${bookingDate}/${courtId}/${user.id}`, {
+      fetch(`${window.CONFIG.SERVER_BASE_URL}/booking/${bookingDate}/${selectedCourt}/${user.id}`, {
         method: "POST"
       })
         .then((response) => response.json())
@@ -142,16 +147,23 @@ export function Calendar() {
       {selectedDate && (
         <div className="availability mt-3">
           <h3 className="text-center">Disponibilidad para {selectedDate.toLocaleDateString()}</h3>
-          <ul className="list-group">
-            <h2>PISTA 1</h2>
-            {availability.map((slot, index) => (
-              <li key={index} className="list-group-item list-group-item-success">
-                <Button variant="primary" onClick={() => handleOpenModal(slot)}>
-                  {slot.time}
-                </Button>
-              </li>
-            ))}
-          </ul>
+          {courts.map((court) => (
+            <div key={court}>
+              <h2>Pista {court}</h2>
+              <ul className="list-group mb-3">
+                {availability[court] && availability[court].map((slot, index) => (
+                  <li key={index} className="list-group-item list-group-item-success">
+                    <Button variant="secondary" onClick={() => handleOpenModal(court, slot)}>
+                      {slot.time}
+                    </Button>
+                  </li>
+                ))}
+                {availability[court] && availability[court].length === 0 && (
+                  <li className="list-group-item list-group-item-danger">No hay horas disponibles para esta pista</li>
+                )}
+              </ul>
+            </div>
+          ))}
         </div>
       )}
 

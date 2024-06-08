@@ -19,19 +19,19 @@ export default function Main(props) {
 
       {/* MAIN PAGE CONTENT */}
       <header className="main">
-        <div class="container content responsive-text">
+        <div className="container content responsive-text">
           <h1 className="h1 ml-2 mb-3 text-uppercase text-green">
             Cabo Busto Pádel Club
           </h1>
           <h3 className="h3 ml-2 mb-3">
             Donde la Luz y el Deporte brillan con cada golpe
           </h3>
-          <p class="lead responsive-text">
+          <p className="lead responsive-text">
             En <strong className="text-green">Cabo Busto Pádel Club</strong>, nos apasiona el deporte y
             la comunidad. Aquí, cada golpe de raqueta es un paso hacia la
             excelencia y la diversión. Nos enorgullece ofrecer un espacio donde buscamos fomentar:
           </p>
-          <ul class="list-unstyled">
+          <ul className="list-unstyled">
             <li>
               <strong className="text-green">La Pasión por el Pádel:</strong>{" "}
               Fomentamos el amor por el pádel, desde principiantes hasta
@@ -58,7 +58,7 @@ export default function Main(props) {
             como el faro que nos guía. ¡Vamos a brillar juntos en cada partido!
           </p>
 
-          <div class="container mt-5">
+          <div className="container mt-5">
             <button onClick={handleButtonClick} className="btn custom-button">¡Reserva ya!</button>
           </div>
         </div>
