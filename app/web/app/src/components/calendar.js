@@ -67,13 +67,17 @@ export function Calendar() {
       date.setHours(startHour, 0, 0);
 
       while (date.getHours() <= endHour) {
+        const now = new Date();
+        const isToday = date.toDateString() === now.toDateString();
+        const isPast = isToday && date.getTime() < now.getTime();
+
         const isBooked = reservations.some((element) => {
           let reserve = new Date(element.date);
           reserve.setHours(reserve.getHours() - 2);
           return reserve.getHours() === date.getHours() && date.getDate() === reserve.getDate() && element.id_court === court;
         });
   
-        if (!isBooked) {
+        if (!isBooked && !isPast) {
           slots[court].push({
             time: date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
             available: true,
